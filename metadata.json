@@ -1,0 +1,5 @@
+{
+  "name": "AI Code Generator",
+  "description": "An AI-powered, ChatGPT-style interface that generates high-quality code from natural language prompts. Users can select programming languages, adjust creativity with temperature settings, and receive code with syntax highlighting and easy copy-to-clipboard functionality.",
+  "requestFramePermissions": []
+}
