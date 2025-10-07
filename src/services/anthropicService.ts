@@ -48,7 +48,7 @@ const createAnthropicChatSession = (ai: Anthropic, options: ChatOptions, history
                     for await (const chunk of stream) {
                         if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
                             yield {
-                                text: () => chunk.delta.text
+                                text: () => (chunk.delta as Anthropic.Messages.TextDelta).text
                             };
                         }
                     }
