@@ -3,7 +3,7 @@ import { Message, MessageRole, LLMSettings } from "../types";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-if (!apiKey) {
+if (!apiKey || apiKey.trim() === '') {
     throw new Error("VITE_GEMINI_API_KEY environment variable not set. Please ensure it is in your .env.local file.");
 }
 
@@ -34,7 +34,7 @@ export const startChatSession = (
 
   let ai: GoogleGenerativeAI;
 
-  if (llmSettings.provider === 'google' && !llmSettings.useBuiltInKey && llmSettings.apiKey) {
+  if (llmSettings.provider === 'google' && !llmSettings.useBuiltInKey && llmSettings.apiKey && llmSettings.apiKey.trim() !== '') {
       ai = new GoogleGenerativeAI(llmSettings.apiKey);
   } else {
       ai = builtInAi;

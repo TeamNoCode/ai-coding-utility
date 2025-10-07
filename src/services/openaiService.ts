@@ -7,7 +7,7 @@ if (!apiKey) {
     console.warn("VITE_OPENAI_API_KEY environment variable not set. The built-in key will not be available.");
 }
 
-const builtInAi = apiKey ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true }) : null;
+const builtInAi = apiKey && apiKey.trim() !== '' ? new OpenAI({ apiKey, dangerouslyAllowBrowser: true }) : null;
 
 const roleToOpenAI = (role: MessageRole): 'user' | 'assistant' => {
     if (role === MessageRole.USER) return 'user';
@@ -71,7 +71,7 @@ export const startChatSession = (
 
     let ai: OpenAI | null;
 
-    if (!llmSettings.useBuiltInKey && llmSettings.apiKey) {
+    if (!llmSettings.useBuiltInKey && llmSettings.apiKey && llmSettings.apiKey.trim() !== '') {
         ai = new OpenAI({ apiKey: llmSettings.apiKey, dangerouslyAllowBrowser: true });
     } else {
         ai = builtInAi;

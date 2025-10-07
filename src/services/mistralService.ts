@@ -38,7 +38,7 @@ const createMistralChatSession = (options: ChatOptions, history: Message[], syst
                 .join('');
 
             const currentApiKey = llmSettings.useBuiltInKey ? apiKey : llmSettings.apiKey;
-            if (!currentApiKey) {
+            if (!currentApiKey || currentApiKey.trim() === '') {
                 throw new Error("Mistral API key is not configured.");
             }
 

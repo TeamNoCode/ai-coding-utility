@@ -38,7 +38,7 @@ const createDeepSeekChatSession = (options: ChatOptions, history: Message[], sys
                 .join('');
 
             const currentApiKey = llmSettings.useBuiltInKey ? apiKey : llmSettings.apiKey;
-            if (!currentApiKey) {
+            if (!currentApiKey || currentApiKey.trim() === '') {
                 throw new Error("DeepSeek API key is not configured.");
             }
 

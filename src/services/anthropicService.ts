@@ -7,7 +7,7 @@ if (!apiKey) {
     console.warn("VITE_ANTHROPIC_API_KEY environment variable not set. The built-in key will not be available.");
 }
 
-const builtInAi = apiKey ? new Anthropic({ apiKey }) : null;
+const builtInAi = apiKey && apiKey.trim() !== '' ? new Anthropic({ apiKey }) : null;
 
 const roleToAnthropic = (role: MessageRole): 'user' | 'assistant' => {
     if (role === MessageRole.USER) return 'user';
@@ -67,7 +67,7 @@ export const startChatSession = (
 
     let ai: Anthropic | null;
 
-    if (!llmSettings.useBuiltInKey && llmSettings.apiKey) {
+    if (!llmSettings.useBuiltInKey && llmSettings.apiKey && llmSettings.apiKey.trim() !== '') {
         ai = new Anthropic({ apiKey: llmSettings.apiKey });
     } else {
         ai = builtInAi;
