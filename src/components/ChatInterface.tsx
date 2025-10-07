@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Chat } from '@google/genai';
+import { ChatSession } from '@google/generative-ai';
 import type { Session } from '@supabase/supabase-js';
 import { Message, MessageRole, LLMSettings } from '../types';
 import { startChatSession } from '../services/geminiService';
@@ -294,11 +294,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ session }) => {
             }
         }
         
-        const stream = await chatSession.sendMessageStream({ message: messageParts.length > 0 ? messageParts : '' });
+        const stream = await chatSession.sendMessageStream(messageParts);
 
         let text = '';
-        for await (const chunk of stream) {
-            text += chunk.text;
+        for await (const chunk of stream.stream) {
+            text += chunk.text();
             setMessages((prev) => prev.map(m => m.id === placeholderId ? { ...m, content: text + '...' } : m));
         }
 

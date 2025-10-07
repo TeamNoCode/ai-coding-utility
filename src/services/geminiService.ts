@@ -1,13 +1,15 @@
-import { GoogleGenAI, Chat, Content } from "@google/genai";
+import { GoogleGenerativeAI, ChatSession, Content, Part } from "@google/generative-ai";
 import { Message, MessageRole, LLMSettings } from "../types";
 
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set. Please ensure VITE_API_KEY is in your .env file.");
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+if (!apiKey) {
+    throw new Error("VITE_GEMINI_API_KEY environment variable not set. Please ensure it is in your .env.local file.");
 }
 
-const builtInAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const builtInAi = new GoogleGenerativeAI(apiKey);
 
-const roleToPart = (role: MessageRole) => {
+const roleToPart = (role: MessageRole): "user" | "model" => {
     if (role === MessageRole.USER) {
         return "user";
     }
@@ -27,13 +29,13 @@ export const startChatSession = (
     options: ChatOptions,
     history: Message[],
     customPrompt?: string
-): Chat => {
+): ChatSession => {
   const { language, temperature, llmSettings } = options;
 
-  let ai: GoogleGenAI;
+  let ai: GoogleGenerativeAI;
 
   if (llmSettings.provider === 'google' && !llmSettings.useBuiltInKey && llmSettings.apiKey) {
-      ai = new GoogleGenAI({ apiKey: llmSettings.apiKey });
+      ai = new GoogleGenerativeAI(llmSettings.apiKey);
   } else {
       ai = builtInAi;
   }
@@ -107,7 +109,7 @@ The user wants a modern login form. I'll apply the Law of Prägnanz with a clean
   }
 
   const formattedHistory: Content[] = history.map(msg => {
-    const parts: any[] = [];
+    const parts: Part[] = [];
     if (msg.content) {
         parts.push({ text: msg.content });
     }
@@ -131,11 +133,17 @@ The user wants a modern login form. I'll apply the Law of Prägnanz with a clean
     };
   });
 
-  const chat: Chat = ai.chats.create({
+  const model = ai.getGenerativeModel({
     model: llmSettings.model,
+    systemInstruction: {
+      role: "model",
+      parts: [{ text: systemInstruction }],
+    },
+  });
+
+  const chat: ChatSession = model.startChat({
     history: formattedHistory,
-    config: {
-      systemInstruction: systemInstruction,
+    generationConfig: {
       temperature: temperature,
     },
   });
