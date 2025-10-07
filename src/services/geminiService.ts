@@ -99,10 +99,8 @@ The user wants a modern login form. I'll apply the Law of Prägnanz with a clean
 <suggestions>Add subtle micro-interactions on input focus with GSAP|Implement real-time email validation|Animate the background gradient</suggestions>"
 
 - **Generation Rules:**
-  {/* FIX: Corrected an unnecessary escape character from user\\'s to user's. */}
-  - **Language:** Generate code in the requested language: ${language === 'Auto-Detect' ? 'the language that best fits the user\'s prompt' : language}.
-  {/* FIX: Added a closing backtick to terminate the template literal. This was causing a cascade of syntax errors. */}
-  - **Iterative Changes (CRITICAL):** When a user asks for a change, you MUST take the code from the previous message, apply the requested update, and output the ENTIRE, NEW, UNIFIED code file. DO NOT send back only the changed snippet.\`;
+  - **Language:** Generate code in the requested language: ${language === 'Auto-Detect' ? "the language that best fits the user's prompt" : language}
+  - **Iterative Changes (CRITICAL):** When a user asks for a change, you MUST take the code from the previous message, apply the requested update, and output the ENTIRE, NEW, UNIFIED code file. DO NOT send back only the changed snippet.`;
 
   if (customPrompt && customPrompt.trim().length > 0) {
     systemInstruction += `\n\n- **Custom User Instructions:**\n${customPrompt}`;
