@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChatSession } from '@google/generative-ai';
 import type { Session } from '@supabase/supabase-js';
 import { Message, MessageRole, LLMSettings } from '../types';
 import { startChatSession } from '../services/llmService';
