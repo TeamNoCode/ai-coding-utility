@@ -1,4 +1,4 @@
-import { ProviderKey } from './types';
+import { ProviderKey } from './Frontend-types';
 
 export const GEMINI_MODEL_NAME = 'gemini-2.5-flash';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Session } from '@supabase/supabase-js';
-import { Message as MessageType, MessageRole } from '../types';
-import { UserIcon, AiIcon, PreviewIcon, BrainCircuitIcon, RegenerateIcon, CopyIcon, BookmarkIcon } from './icons';
-import CodeBlock from './CodeBlock';
-import { supabaseEnabled } from '../services/supabaseClient';
+import { Message as MessageType, MessageRole } from '../Frontend-types';
+import { UserIcon, AiIcon, PreviewIcon, BrainCircuitIcon, RegenerateIcon, CopyIcon, BookmarkIcon } from './Frontend-icons';
+import CodeBlock from './Frontend-CodeBlock';
+import { supabaseEnabled } from '../services/Frontend-supabaseClient';
 
 interface MessageProps {
   message: MessageType;

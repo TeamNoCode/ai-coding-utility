@@ -1,4 +1,4 @@
-import { Message, MessageRole, LLMSettings } from '../types';
+import { Message, MessageRole, LLMSettings } from '../Frontend-types';
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 

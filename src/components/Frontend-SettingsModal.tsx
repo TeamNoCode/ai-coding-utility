@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { LLMSettings, ProviderKey } from '../types';
-import { LLM_PROVIDERS } from '../constants';
-import { CloseIcon, CheckIcon } from './icons';
+import { LLMSettings, ProviderKey } from '../Frontend-types';
+import { LLM_PROVIDERS } from '../Frontend-constants';
+import { CloseIcon, CheckIcon } from './Frontend-icons';
 
 interface SettingsModalProps {
   isOpen: boolean;

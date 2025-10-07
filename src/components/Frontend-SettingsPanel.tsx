@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import { supabase, supabaseEnabled } from '../services/supabaseClient';
-import { SUPPORTED_LANGUAGES } from '../constants';
-import { ChatHistory } from '../types';
-import { UserIcon, LogoutIcon, ChevronDoubleLeftIcon, ChevronDownIcon, ChevronUpIcon, GoogleIcon, GearIcon } from './icons';
+import { supabase, supabaseEnabled } from '../services/Frontend-supabaseClient';
+import { SUPPORTED_LANGUAGES } from '../Frontend-constants';
+import { ChatHistory } from '../Frontend-types';
+import { UserIcon, LogoutIcon, ChevronDoubleLeftIcon, ChevronDownIcon, ChevronUpIcon, GoogleIcon, GearIcon } from './Frontend-icons';
 
 interface SidePanelProps {
   session: Session | null;

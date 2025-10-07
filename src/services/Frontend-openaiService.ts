@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { Message, MessageRole, LLMSettings } from '../types';
+import { Message, MessageRole, LLMSettings } from '../Frontend-types';
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 

@@ -1,4 +1,4 @@
-import { Message, MessageRole, LLMSettings } from '../types';
+import { Message, MessageRole, LLMSettings } from '../Frontend-types';
 
 const MISTRAL_API_URL = 'https://api.mistral.ai/v1/chat/completions';
 

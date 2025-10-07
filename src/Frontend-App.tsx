@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import ChatInterface from './components/ChatInterface';
-import { supabase, supabaseEnabled } from './services/supabaseClient';
+import ChatInterface from './components/Frontend-ChatInterface';
+import { supabase, supabaseEnabled } from './services/Frontend-supabaseClient';
 
 interface ConfigurationWarningProps {
   onClose: () => void;

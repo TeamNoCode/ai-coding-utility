@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AiIcon, ThinkingIcon, ChevronDownIcon, ChevronUpIcon } from './icons';
+import { AiIcon, ThinkingIcon, ChevronDownIcon, ChevronUpIcon } from './Frontend-icons';
 
 interface ThinkingMessageProps {
   streamingContent: string;

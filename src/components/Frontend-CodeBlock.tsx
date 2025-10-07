@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CopyIcon, CheckIcon, PreviewIcon, CodeIcon, FullScreenIcon, ExitFullScreenIcon } from './icons';
+import { CopyIcon, CheckIcon, PreviewIcon, CodeIcon, FullScreenIcon, ExitFullScreenIcon } from './Frontend-icons';
 
 interface CodeBlockPart {
     language: string;

@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { Message, MessageRole, LLMSettings } from '../types';
+import { Message, MessageRole, LLMSettings } from '../Frontend-types';
 
 const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
 

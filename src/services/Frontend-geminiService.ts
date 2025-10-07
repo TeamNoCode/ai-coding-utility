@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI, ChatSession, Content, Part } from "@google/generative-ai";
-import { Message, MessageRole, LLMSettings } from "../types";
+import { Message, MessageRole, LLMSettings } from "../Frontend-types";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 

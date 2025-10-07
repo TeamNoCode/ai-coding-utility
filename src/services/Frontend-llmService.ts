@@ -1,9 +1,9 @@
-import { Message, LLMSettings, ProviderKey } from '../types';
-import { startChatSession as startGeminiChat } from './geminiService';
-import { startChatSession as startOpenAIChat } from './openaiService';
-import { startChatSession as startAnthropicChat } from './anthropicService';
-import { startChatSession as startMistralChat } from './mistralService';
-import { startChatSession as startDeepSeekChat } from './deepseekService';
+import { Message, LLMSettings, ProviderKey } from '../Frontend-types';
+import { startChatSession as startGeminiChat } from './Frontend-geminiService';
+import { startChatSession as startOpenAIChat } from './Frontend-openaiService';
+import { startChatSession as startAnthropicChat } from './Frontend-anthropicService';
+import { startChatSession as startMistralChat } from './Frontend-mistralService';
+import { startChatSession as startDeepSeekChat } from './Frontend-deepseekService';
 
 interface ChatOptions {
   language: string;

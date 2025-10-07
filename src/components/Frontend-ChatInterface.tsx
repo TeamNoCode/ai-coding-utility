@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import { Message, MessageRole, LLMSettings } from '../types';
-import { startChatSession } from '../services/llmService';
-import { supabase, supabaseEnabled } from '../services/supabaseClient';
-import SidePanel from './SettingsPanel';
-import MessageComponent, { parseContent, ParsedCodePart } from './Message';
-import ThinkingMessage from './ThinkingMessage';
-import CodeBlock from './CodeBlock';
-import { SendIcon, ChevronDoubleRightIcon, CloseIcon, SparklesIcon, BrainCircuitIcon, PreviewIcon, UndoIcon, RedoIcon, PlusIcon, XCircleIcon } from './icons';
-import { DEFAULT_LANGUAGE, DEFAULT_TEMPERATURE, WELCOME_PROMPTS_LIST } from '../constants';
-import SettingsModal from './SettingsModal';
+import { Message, MessageRole, LLMSettings } from '../Frontend-types';
+import { startChatSession } from '../services/Frontend-llmService';
+import { supabase, supabaseEnabled } from '../services/Frontend-supabaseClient';
+import SidePanel from './Frontend-SettingsPanel';
+import MessageComponent, { parseContent, ParsedCodePart } from './Frontend-Message';
+import ThinkingMessage from './Frontend-ThinkingMessage';
+import CodeBlock from './Frontend-CodeBlock';
+import { SendIcon, ChevronDoubleRightIcon, CloseIcon, SparklesIcon, BrainCircuitIcon, PreviewIcon, UndoIcon, RedoIcon, PlusIcon, XCircleIcon } from './Frontend-icons';
+import { DEFAULT_LANGUAGE, DEFAULT_TEMPERATURE, WELCOME_PROMPTS_LIST } from '../Frontend-constants';
+import SettingsModal from './Frontend-SettingsModal';
 
 interface ChatInterfaceProps {
     session: Session | null;
