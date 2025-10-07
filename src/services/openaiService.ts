@@ -67,7 +67,7 @@ export const startChatSession = (
     history: Message[],
     customPrompt?: string
 ): any => {
-    const { language, llmSettings } = options;
+    const { llmSettings } = options;
 
     let ai: OpenAI | null;
 
