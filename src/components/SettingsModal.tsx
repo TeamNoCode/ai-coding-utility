@@ -33,7 +33,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
       provider: newProvider,
       model: LLM_PROVIDERS[newProvider].models[0],
       apiKey: '',
-      useBuiltInKey: newProvider === 'google',
+      useBuiltInKey: true, // Default to built-in key for all providers
     });
     setTestStatus('idle');
   };
@@ -77,8 +77,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
   };
 
   if (!isOpen) return null;
-
-  const isGemini = settings.provider === 'google';
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true">
@@ -130,30 +128,28 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
             </select>
           </div>
           
-          {isGemini && (
-            <div>
-              <label htmlFor="gemini-key-source" className="block text-sm font-medium text-gray-300 mb-2">
-                API Key Source
-              </label>
-              <select
-                id="gemini-key-source"
-                value={settings.useBuiltInKey ? 'built-in' : 'custom'}
-                onChange={(e) => {
-                  const useBuiltIn = e.target.value === 'built-in';
-                  updateSettings('useBuiltInKey', useBuiltIn);
-                  if (useBuiltIn) {
-                    updateSettings('apiKey', '');
-                  }
-                }}
-                className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                <option value="built-in">Built-in Key (On the house)</option>
-                <option value="custom">Custom API Key</option>
-              </select>
-            </div>
-          )}
+          <div>
+            <label htmlFor="api-key-source" className="block text-sm font-medium text-gray-300 mb-2">
+              API Key Source
+            </label>
+            <select
+              id="api-key-source"
+              value={settings.useBuiltInKey ? 'built-in' : 'custom'}
+              onChange={(e) => {
+                const useBuiltIn = e.target.value === 'built-in';
+                updateSettings('useBuiltInKey', useBuiltIn);
+                if (useBuiltIn) {
+                  updateSettings('apiKey', '');
+                }
+              }}
+              className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="built-in">Built-in Key (On the house)</option>
+              <option value="custom">Custom API Key</option>
+            </select>
+          </div>
 
-          {(!isGemini || !settings.useBuiltInKey) && (
+          {!settings.useBuiltInKey && (
             <div>
               <label htmlFor="api-key-input" className="block text-sm font-medium text-gray-300 mb-2">
                 API Key
@@ -169,9 +165,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
             </div>
           )}
           
-          {isGemini && settings.useBuiltInKey && (
+          {settings.useBuiltInKey && (
             <p className="text-xs text-gray-500">
-              The application's built-in key allows for free, limited use of Google Gemini without needing your own API key.
+              The application's built-in key allows for free, limited use of the selected provider without needing your own API key.
             </p>
           )}
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatSession } from '@google/generative-ai';
 import type { Session } from '@supabase/supabase-js';
 import { Message, MessageRole, LLMSettings } from '../types';
-import { startChatSession } from '../services/geminiService';
+import { startChatSession } from '../services/llmService';
 import { supabase, supabaseEnabled } from '../services/supabaseClient';
 import SidePanel from './SettingsPanel';
 import MessageComponent, { parseContent, ParsedCodePart } from './Message';
@@ -230,11 +230,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ session }) => {
     const currentImage = imageContent !== undefined ? imageContent : image;
     if ((!currentInput.trim() && !currentImage) || isLoading) return;
 
-    if (llmSettings.provider !== 'google') {
-        alert(`The ${llmSettings.provider} provider is not yet implemented in this demo. Please select Google Gemini in the provider settings.`);
-        return;
-    }
-    
     setUndoneMessages([]); // Clear redo stack on new message
     setSuggestedReplies([]);
     const userMessage: Message = { 
